@@ -1,4 +1,8 @@
 import mongoose, { Document, Model } from "mongoose";
+export const DONATION_STATUS = {
+  OPEN: "OPEN",
+  PAIED: "PAIED",
+};
 
 const Schema = new mongoose.Schema(
   {
@@ -27,6 +31,13 @@ const Schema = new mongoose.Schema(
     brCode: {
       type: String,
       description: "brcode of this donation",
+    },
+    status: {
+      type: String,
+      default: DONATION_STATUS.OPEN,
+      enum: Object.values(DONATION_STATUS),
+      index: true,
+      description: "The status of this charge",
     },
   },
   {

@@ -4,9 +4,10 @@ import Donation from "./DonationModel";
 
 type PixQrCodePostBody = {
   name: string;
-  identifier: number;
+  identifier: string;
   value: number;
-  comment: number;
+  comment: string;
+  status: string;
 };
 export const donationPost = async (
   ctx: ParameterizedContext<{}, {}, PixQrCodePostBody>
@@ -21,11 +22,13 @@ export const donationPost = async (
   }).save();
 
   const payload = {
+    name: body.name,
     correlationID: donation._id.toString(),
     identifier: donation.identifier,
     value: body.value,
     comment: body.comment,
   };
+
   const { brCode, error } = await pixQrCodePostApi(payload);
 
   if (error) {
@@ -48,10 +51,12 @@ export const donationPost = async (
   );
 
   ctx.body = {
+    name: donation.name,
+    identifier: donation.identifier,
     comment: donation.comment,
     value: donation.value,
-    id: donation._id.toString(),
     status: donation.status,
+    id: donation._id.toString(),
     brCode,
   };
   ctx.status = 200;

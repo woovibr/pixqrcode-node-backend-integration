@@ -1,6 +1,6 @@
 import { baseUrl, getAuthorization } from "./api";
 
-const url = "/api/openpix/v1/pixQrCode";
+const url = "/api/openpix/v1/qrcode-static";
 
 const getUrl = () => `${baseUrl}${url}`;
 
@@ -33,13 +33,16 @@ export const pixQrCodePost = async (
 
   if (response.ok) {
     const data = await response.json();
+    console.log("pixQrCodePost", {
+      data,
+    });
 
     return data;
   }
 
   const data = await response.json();
 
-  console.log({
+  console.log("pixQrCodePost", {
     data,
   });
 
