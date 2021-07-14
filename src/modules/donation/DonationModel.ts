@@ -1,49 +1,50 @@
-import mongoose, { Document, Model } from 'mongoose';
-
-export const DONATION_STATUS = {
-  OPEN: 'OPEN',
-  PAIED: 'PAIED',
-};
+import mongoose, { Document, Model } from "mongoose";
 
 const Schema = new mongoose.Schema(
   {
-    value: {
-      type: Number,
-      description: 'value of this charge in cents',
-    },
-    comment: {
+    name: {
       type: String,
-      description: 'comments about this charge',
+      description: "name of this pix qrcode in cents",
       index: true,
       trim: true,
     },
-    status: {
+    identifier: {
       type: String,
-      default: DONATION_STATUS.OPEN,
-      enum: Object.values(DONATION_STATUS),
+      description: "identifier of this pix qrcode in cents",
       index: true,
-      description: 'The status of this charge',
+      trim: true,
+    },
+    value: {
+      type: Number,
+      description: "value of this pix qrcode in cents",
+    },
+    comment: {
+      type: String,
+      description: "comments about this pix qrcode",
+      index: true,
+      trim: true,
     },
     brCode: {
       type: String,
-      description: 'brcode of this donation',
+      description: "brcode of this donation",
     },
   },
   {
-    collection: 'Donation',
+    collection: "Donation",
     timestamps: true,
-  },
+  }
 );
 
 export interface IDonation extends Document {
+  name: string;
+  identifier: string;
   value: number;
   comment: string;
-  status: string;
   brCode: string;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const DonationModel: Model<IDonation> = mongoose.model('Donation', Schema);
+const DonationModel: Model<IDonation> = mongoose.model("Donation", Schema);
 
 export default DonationModel;
