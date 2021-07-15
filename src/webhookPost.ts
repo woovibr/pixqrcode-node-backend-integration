@@ -59,9 +59,6 @@ export const webhookPost = async (
   // eslint-disable-next-link
   const { pixQrCode, pix } = ctx.request.body;
 
-  console.log("pix", pix);
-  console.log("pixQrCode", pixQrCode);
-
   // webhook payload of test
   if (!pixQrCode && !pixTransaction) {
     ctx.status = 200;
