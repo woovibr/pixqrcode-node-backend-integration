@@ -29,7 +29,9 @@ export const donationPost = async (
     comment: body.comment,
   };
 
-  const { brCode, error } = await pixQrCodePostApi(payload);
+  const { pixQrCode, error } = await pixQrCodePostApi(payload);
+
+  const { brCode } = pixQrCode;
 
   if (error) {
     ctx.status = 400;
