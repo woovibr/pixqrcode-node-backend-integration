@@ -60,7 +60,7 @@ export const webhookPost = async (
   const { pixQrCode, pix } = ctx.request.body;
 
   // webhook payload of test
-  if (!pixQrCode && !pixTransaction) {
+  if (!pixQrCode && !pix) {
     ctx.status = 200;
     return;
   }

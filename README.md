@@ -19,7 +19,7 @@ Create a .env file with the following data
 
 ```jsx
 PORT=5666
-OPENPIX_API=https://api.openpix.com.br/
+OPENPIX_API=https://api.openpix.com.br
 APP_ID=<your app id>
 MONGO_URI=mongodb://localhost/donation
 ```

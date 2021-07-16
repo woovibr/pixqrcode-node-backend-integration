@@ -31,8 +31,6 @@ export const donationPost = async (
 
   const { pixQrCode, error } = await pixQrCodePostApi(payload);
 
-  const { brCode } = pixQrCode;
-
   if (error) {
     ctx.status = 400;
     ctx.body = {
@@ -40,6 +38,8 @@ export const donationPost = async (
     };
     return;
   }
+
+  const { brCode } = pixQrCode;
 
   await Donation.updateOne(
     {
